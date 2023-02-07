@@ -1,4 +1,5 @@
-// Require schema and model from mongoose
+// Should this be in Thought model?
+//Require schema and model from mongoose
 const mongoose = require('mongoose');
 
 // Construct a new instance of the schema class
