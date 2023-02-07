@@ -31,4 +31,4 @@ const reactionSchema = new mongoose.Schema({
 //   { title: 'Hello World Infinity and Beyond', price: 4, inStock: true },
 // ]);
 
-module.exports = Reaction; //or reactionSchema?
+module.exports = reactionSchema;
