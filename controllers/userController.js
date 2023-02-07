@@ -1,41 +1,13 @@
-const { ObjectId } = require('mongoose').Types;
+//const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 //some are grade some are course, which one 
 //corresponds to thought and which to reaction?
-
-// Aggregate function to get the number of students overall
-// const headCount = async () =>
-//   User.aggregate()
-//     .count('userCount')
-//     .then((numberOfUsers) => numberOfUsers);
-
-// Aggregate function for getting the overall grade using $avg
-// const grade = async (userId) =>
-//   User.aggregate([
-//     // only include the given student by using $match
-//     { $match: { _id: ObjectId(userId) } },
-//     {
-//       $unwind: '$thoughts', //might be reactions !!
-//     },
-//     {
-//       $group: {
-//         _id: ObjectId(userId),
-//         overallGrade: { $avg: '$assignments.score' },
-//       },
-//     },
-//   ]);
 
 module.exports = {
   // Get all students
   getUsers(req, res) {
     User.find()
-      .then(async (users) => {
-        const userObj = {
-          users,
-          headCount: await headCount(),
-        };
-        return res.json(userObj);
-      })
+      .then((user) => res.json(user))
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -44,14 +16,10 @@ module.exports = {
   // Get a single student
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-      .select('-__v')
       .then(async (user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json({
-              user,
-              thought: await thought(req.params.userId), //some are grade some are course, which one corresponds to thought and which to reaction?
-            })
+          : res.json(user)
       )
       .catch((err) => {
         console.log(err);
