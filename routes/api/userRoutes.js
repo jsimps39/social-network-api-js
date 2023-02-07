@@ -3,7 +3,7 @@ const {
   getUsers,
   getSingleUser,
   createUser,
-  deleteSingleUser,
+  deleteUser,
   updateUser,
 } = require('../../controllers/userController');
 
@@ -11,12 +11,12 @@ const {
 router.route('/').get(getUsers).post(createUser);
 
 // /api/users/:userID
-router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteSingleUser);
+router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser);
 
 // /api/students/:studentId/
-router.route('/:userId/thoughts').post(addAssignment);
+//router.route('/:userId/thoughts').post(addThought);
 
 // /api/students/:studentId/friends/:friendID
-router.route('/:studentId/friends/:friendId').post(addFriend).delete(removeFriend);
+//router.route('/:studentId/friends/:friendId').post(addFriend).delete(removeFriend);
 
 module.exports = router;

@@ -4,10 +4,10 @@ const { User, Thought } = require('../models');
 //corresponds to thought and which to reaction?
 
 // Aggregate function to get the number of students overall
-const headCount = async () =>
-  User.aggregate()
-    .count('userCount')
-    .then((numberOfUsers) => numberOfUsers);
+// const headCount = async () =>
+//   User.aggregate()
+//     .count('userCount')
+//     .then((numberOfUsers) => numberOfUsers);
 
 // Aggregate function for getting the overall grade using $avg
 // const grade = async (userId) =>
@@ -88,7 +88,21 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $set: req.body },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: 'No user found with that ID :(' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   // Add an assignment to a student
   addThought(req, res) {
     console.log('You are adding a thought');
