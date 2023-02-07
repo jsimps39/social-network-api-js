@@ -13,4 +13,4 @@ In this project I created the back end for a social media startup that has get, 
 [link](https://jsimps39.github.io/social-network-api-js/)
 
 ## Link to Video
-[link](https://drive.google.com/file/d/1y17IU3t_zVViISjE8IGZo9n5-VCHD26n/view)
+[link](https://drive.google.com/file/d/15nB_8FpFQ-actd-NbRyE0E7C_VuDKPsA/view)
